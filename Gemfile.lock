@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ae_easy-test (0.0.0)
+    ae_easy-test (0.0.1)
       ae_easy-core (>= 0.1.3)
 
 GEM

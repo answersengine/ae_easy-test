@@ -494,19 +494,6 @@
     </li>
   
 </ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>NotImplementedError</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -551,14 +538,16 @@
 155
 156
 157
-158</pre>
+158
+159</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ae_easy/test/helper.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_collection_diff'>collection_diff</span> <span class='id identifier rubyid_items_a'>items_a</span><span class='comma'>,</span> <span class='id identifier rubyid_items_b'>items_b</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Current status WIP, don\&#39;t use it for now.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+  <span class='comment'># TODO: Improve this function
+</span>  <span class='comment'>#raise NotImplementedError.new(&#39;Current status WIP, don\&#39;t use it for now.&#39;)
+</span>  <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span>
     <span class='label'>exact_match:</span> <span class='kw'>true</span><span class='comma'>,</span>
     <span class='label'>deep_stringify:</span> <span class='kw'>true</span><span class='comma'>,</span>
     <span class='label'>sanitize:</span> <span class='kw'>true</span><span class='comma'>,</span>
@@ -805,7 +794,6 @@
       <pre class="lines">
 
 
-180
 181
 182
 183
@@ -821,10 +809,11 @@
 193
 194
 195
-196</pre>
+196
+197</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ae_easy/test/helper.rb', line 180</span>
+      <pre class="code"><span class="info file"># File 'lib/ae_easy/test/helper.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_collection_match?'>collection_match?</span> <span class='id identifier rubyid_fragment'>fragment</span><span class='comma'>,</span> <span class='id identifier rubyid_universe'>universe</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -1528,7 +1517,6 @@
       <pre class="lines">
 
 
-212
 213
 214
 215
@@ -1537,10 +1525,11 @@
 218
 219
 220
-221</pre>
+221
+222</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ae_easy/test/helper.rb', line 212</span>
+      <pre class="code"><span class="info file"># File 'lib/ae_easy/test/helper.rb', line 213</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_match_collections'>match_collections</span> <span class='id identifier rubyid_items_a'>items_a</span><span class='comma'>,</span> <span class='id identifier rubyid_items_b'>items_b</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_diff'>diff</span> <span class='op'>=</span> <span class='id identifier rubyid_collection_diff'>collection_diff</span><span class='lparen'>(</span>
@@ -1711,7 +1700,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Mar  8 17:49:24 2019 by
+  Generated on Fri Mar  8 21:06:39 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.18 (ruby-2.5.3).
 </div>
