@@ -54,7 +54,7 @@ module AeEasy
             pages: nil,
             outputs: nil
           }.merge opts
-          dir = opts[:input_dir] || expand_relative_input(opts[:rel_dir]) || self.input_dir
+          dir = self.input_dir = opts[:input_dir] || expand_relative_input(opts[:rel_dir]) || self.input_dir
 
           # Load overrides
           self.content = opts[:content]
@@ -183,6 +183,13 @@ module AeEasy
           self
         end
 
+        # Create an executor based on the current executor type.
+        #
+        # @return [AeEasy::Core::Mock::FakeExecutor]
+        def new_executor
+          self.class.new
+        end
+
         # Match expected pages.
         #
         # @param [Hash] opts ({}) Configuration options.
@@ -214,9 +221,11 @@ module AeEasy
           opts[:input_dir] ||= input_dir
 
           # Expected context
-          expected = AeEasy::Core::Mock::FakeExecutor.new
+          expected_opts = {}.merge opts
+          expected_opts[:input_dir] ||= input_dir
+          expected = new_executor
           expected.root_input_dir = root_input_dir
-          expected.load_expected_pages opts
+          expected.load_expected_pages expected_opts
 
           # Config skip fields
           skip_fields = opts[:skip_fields]
@@ -227,12 +236,13 @@ module AeEasy
           diff = AeEasy::Test::Helper.match_collections(
             saved_pages,
             expected.saved_pages,
-            skip: skip_fields
+            skip: skip_fields,
+            compare_way: :left
           )
           {
             match: diff[:match],
-            saved: diff[:diff][:item_a],
-            expected: diff[:diff][:item_b]
+            saved: diff[:diff][:items_a],
+            expected: diff[:diff][:items_b]
           }
         end
 
@@ -243,6 +253,7 @@ module AeEasy
         #
         # @return [Boolean] `true` when pass, else `false`.
         def should_match_pages opts = {}
+          flush
           diff = match_expected_pages opts
           log_caller = opts[:log_caller] || ([] + caller)
           unless diff[:match]
@@ -271,7 +282,7 @@ module AeEasy
         #   * `[Boolean] match` `true` when match, `false` when diff.
         #   * `[Hash] expected` Non matching expected outputs.
         #   * `[Hash] saved` Non matching saved outputs.
-        def self.match_expected_outputs opts = {}
+        def match_expected_outputs opts = {}
           opts = {
             rel_dir: nil,
             input_dir: nil,
@@ -279,12 +290,13 @@ module AeEasy
             skip_fields: [],
             default_skip_fields: true,
           }.merge opts
-          opts[:input_dir] ||= input_dir
 
           # Expected context
-          expected = AeEasy::Core::Mock::FakeExecutor.new
+          expected_opts = {}.merge opts
+          expected_opts[:input_dir] ||= input_dir
+          expected = new_executor
           expected.root_input_dir = root_input_dir
-          expected.load_expected_outputs opts
+          expected.load_expected_outputs expected_opts
 
           # Config skip fields
           skip_fields = opts[:skip_fields]
@@ -295,12 +307,13 @@ module AeEasy
           diff = AeEasy::Test::Helper.match_collections(
             saved_outputs,
             expected.saved_outputs,
-            skip: skip_fields
+            skip: skip_fields,
+            compare_way: :left
           )
           {
             match: diff[:match],
-            saved: diff[:diff][:item_a],
-            expected: diff[:diff][:item_b]
+            saved: diff[:diff][:items_a],
+            expected: diff[:diff][:items_b]
           }
         end
 
@@ -311,10 +324,11 @@ module AeEasy
         #
         # @return [Boolean] `true` when pass, else `false`.
         def should_match_outputs opts = {}
+          flush
           diff = match_expected_outputs opts
           log_caller = opts[:log_caller] || ([] + caller)
           unless diff[:match]
-            AeEasy::Test::Helper.verbose_match_diff 'outputs', diff, log_caller
+            AeEasy::Test.verbose_match_diff 'outputs', diff, log_caller
           end
           diff[:match]
         end

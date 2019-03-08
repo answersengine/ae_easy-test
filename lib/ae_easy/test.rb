@@ -32,7 +32,7 @@ module AeEasy
     def self.verbose_log message, data = nil, log_caller = nil
       log_caller ||= caller
       caller_infos = log_caller.first.split ":"
-      text = data.nil? ? 'nil' : data.inspect
+      text = data.nil? ? 'nil' : JSON.pretty_generate(data)
       puts "\n#{caller_infos[0]}:#{caller_infos[1]} - #{message}#{text}\n\n"
     end
 

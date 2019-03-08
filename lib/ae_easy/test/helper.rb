@@ -119,7 +119,8 @@ module AeEasy
       #   * `[Array] :items_b` Diff items on `items_b` collection.
       #   * `[Boolean] :match` `true` when all items match else `false`.
       def self.collection_diff items_a, items_b, opts = {}
-        raise NotImplementedError.new('Current status WIP, don\'t use it for now.')
+        # TODO: Improve this function
+        #raise NotImplementedError.new('Current status WIP, don\'t use it for now.')
         opts = {
           exact_match: true,
           deep_stringify: true,
