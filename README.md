@@ -11,6 +11,6 @@ Install gem:
 ```gem install 'ae_easy-test'```
 
 Require gem:
-```require 'ae_easy-test'```
+```require 'ae_easy/test'```
 
 Documentation can be found [here](http://rubydoc.org/gems/ae_easy-test/frames).
