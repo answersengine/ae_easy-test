@@ -71,7 +71,7 @@ module AeEasy
             input_pages = AeEasy::Test::Helper.load_json_file(File.join(dir, 'pages.json'))
             save_pages input_pages unless input_pages.nil?
             input_outputs = AeEasy::Test::Helper.load_json_file(File.join(dir, 'outputs.json'))
-            save_outputs outputs unless input_outputs.nil?
+            save_outputs input_outputs unless input_outputs.nil?
             input_vars = AeEasy::Test::Helper.load_json_file(File.join(dir, 'vars.json'))
             vars ||= input_vars if opts[:page].nil?
           end
