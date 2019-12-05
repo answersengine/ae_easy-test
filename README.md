@@ -5,12 +5,16 @@
 # AeEasy test module
 ## Description
 
-AeEasy test is part of AeEasy gem collection. It provides testing tools for TDD (Test Driven Development) over AnswersEngine apps.
+AeEasy test is part of AeEasy gem collection and an alias to [dh_easy-test](https://github.com/DataHenOfficial/dh_easy-test/) gem. It provides testing tools for TDD (Test Driven Development) over DataHen apps.
 
 Install gem:
-```gem install 'ae_easy-test'```
+```ruby
+gem install 'ae_easy-test'
+```
 
 Require gem:
-```require 'ae_easy/test'```
+```ruby
+require 'ae_easy/test'
+```
 
-Documentation can be found [here](http://rubydoc.org/gems/ae_easy-test/frames).
+See [dh_easy-test](https://github.com/DataHenOfficial/dh_easy-test/) gem for documentation.
